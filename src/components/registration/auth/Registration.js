@@ -7,11 +7,11 @@ import TextField from "@material-ui/core/TextField";
 
 const styles = (theme) => ({
   root: {
-    margin: theme.spacing.unit * 8,
-    padding: theme.spacing.unit * 3,
+    margin: theme.spacing(8),
+    padding: theme.spacing(3),
   },
   item: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
 });
 
@@ -25,6 +25,8 @@ class Registration extends Component {
       password_confirmation: "",
       registrationErrors: "",
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange = (name) => (event) => {
@@ -33,21 +35,26 @@ class Registration extends Component {
     });
   };
 
+  handleSubmit(event) {
+    console.log("form Submitted");
+    event.preventDefault();
+  }
+
   render() {
     const { classes } = this.props;
-    const { email, password } = this.state;
+    const { email, password, password_confirmation } = this.state;
 
     return (
       <div>
         <div className={classes.root}>
           <Grid container direction="column" alignItems="center">
             <Grid item xs={12}>
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <Grid item xs={12}>
                   <Typography
                     className={classes.item}
                     gutterBottom
-                    variant="title"
+                    // variant="title"
                   >
                     Add New Partner
                   </Typography>
@@ -55,23 +62,31 @@ class Registration extends Component {
                 <Grid item className={classes.item}>
                   <TextField
                     label="email"
-                    handleChange={this.handleChange("email")}
+                    type="email"
+                    onChange={this.handleChange("email")}
                     value={email}
+                    required
                   />
                 </Grid>
                 <Grid item className={classes.item}>
                   <TextField
                     label="password"
-                    handleChange={this.handleChange("password")}
+                    type="password"
+                    onChange={this.handleChange("password")}
                     value={password}
+                    required
                   />
                 </Grid>
                 <Grid item className={classes.item}>
                   <TextField
                     label="password_confirmation"
-                    handleChange={this.handleChange("password_confirmation")}
+                    type="password"
+                    onChange={this.handleChange("password_confirmation")}
+                    value={password_confirmation}
+                    required
                   />
                 </Grid>
+                <button type="submit">Register</button>
               </form>
             </Grid>
           </Grid>
