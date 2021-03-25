@@ -49,7 +49,7 @@ class Registration extends Component {
                     gutterBottom
                     variant="title"
                   >
-                    Add New User
+                    Add New Partner
                   </Typography>
                 </Grid>
                 <Grid item className={classes.item}>
