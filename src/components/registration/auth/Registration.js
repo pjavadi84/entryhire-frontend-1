@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
 
 const styles = (theme) => ({
   root: {
@@ -36,7 +37,26 @@ class Registration extends Component {
   };
 
   handleSubmit(event) {
-    console.log("form Submitted");
+    const { email, password, password_confirmation } = this.state;
+
+    axios
+      .post(
+        "http://localhost:3001/v1/registrations",
+        {
+          partner: {
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation,
+          },
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
     event.preventDefault();
   }
 
