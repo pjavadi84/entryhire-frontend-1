@@ -16,15 +16,14 @@ const styles = (theme) => ({
   },
 });
 
-class Registration extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
       password: "",
-      password_confirmation: "",
-      registrationErrors: "",
+      loginErrors: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,34 +36,33 @@ class Registration extends Component {
   };
 
   handleSubmit(event) {
-    const { email, password, password_confirmation } = this.state;
+    const { email, password } = this.state;
 
     axios
       .post(
-        "http://localhost:3001/v1/registrations",
+        "http://localhost:3001/v1/sessions",
         {
           partner: {
             email: email,
             password: password,
-            password_confirmation: password_confirmation,
           },
         },
         { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.status === "created") {
+        if (response.data.logged_in) {
           this.props.handleSuccessfulAuth(response.data);
         }
       })
       .catch((error) => {
-        console.log("registration error", error);
+        console.log("login error", error);
       });
     event.preventDefault();
   }
 
   render() {
     const { classes } = this.props;
-    const { email, password, password_confirmation } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div>
@@ -78,7 +76,7 @@ class Registration extends Component {
                     gutterBottom
                     // variant="title"
                   >
-                    Partner Registration
+                    Login
                   </Typography>
                 </Grid>
                 <Grid item className={classes.item}>
@@ -99,16 +97,8 @@ class Registration extends Component {
                     required
                   />
                 </Grid>
-                <Grid item className={classes.item}>
-                  <TextField
-                    label="password_confirmation"
-                    type="password"
-                    onChange={this.handleChange("password_confirmation")}
-                    value={password_confirmation}
-                    required
-                  />
-                </Grid>
-                <button type="submit">Register</button>
+
+                <button type="submit">Login</button>
               </form>
             </Grid>
           </Grid>
@@ -118,8 +108,8 @@ class Registration extends Component {
   }
 }
 
-Registration.propTypes = {
+Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Registration);
+export default withStyles(styles)(Login);
