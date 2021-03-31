@@ -5,6 +5,7 @@ import axios from "axios";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 
+// I USED CAPITAL STRINGS FOR LOG STATUS TO MAKE EASIER TO DIFFERENTIATE VARIOUS CONDITIONALS
 export default class App extends Component {
   constructor() {
     super();
@@ -14,12 +15,20 @@ export default class App extends Component {
     };
 
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleLogin(data) {
     this.setState({
       loggedInStatus: "successfully Logged in!",
       partner: data.partner,
+    });
+  }
+
+  handleLogOut() {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+      partner: {},
     });
   }
 
@@ -64,6 +73,7 @@ export default class App extends Component {
                 <Home
                   {...props}
                   handleLogin={this.handleLogin}
+                  handleLogOut={this.handleLogOut}
                   loggedInStatus={this.state.loggedInStatus}
                 />
               )}
