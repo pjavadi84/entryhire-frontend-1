@@ -12,11 +12,13 @@ export default class Home extends Component {
   }
 
   handleSuccessfulAuth(data) {
+    debugger;
     this.props.handleLogin(data);
     this.props.history.push("/dashboard");
   }
 
   handleLogOutClick() {
+    debugger;
     axios
       .delete("http://localhost:3001/v1/logout", { withCredentials: true })
       .then((response) => {
