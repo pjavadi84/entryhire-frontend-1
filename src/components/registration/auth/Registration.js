@@ -21,6 +21,11 @@ class Registration extends Component {
     super(props);
 
     this.state = {
+      company_name: "",
+      contact_name: "",
+      zipcode: "",
+      website: "",
+      about_us: "",
       email: "",
       password: "",
       password_confirmation: "",
@@ -37,13 +42,27 @@ class Registration extends Component {
   };
 
   handleSubmit(event) {
-    const { email, password, password_confirmation } = this.state;
+    const {
+      company_name,
+      contact_name,
+      zipcode,
+      website,
+      about_us,
+      email,
+      password,
+      password_confirmation,
+    } = this.state;
 
     axios
       .post(
         "http://localhost:3001/v1/registrations",
         {
           partner: {
+            company_name: company_name,
+            contact_name: contact_name,
+            zipcode: zipcode,
+            website: website,
+            about_us: about_us,
             email: email,
             password: password,
             password_confirmation: password_confirmation,
@@ -64,7 +83,16 @@ class Registration extends Component {
 
   render() {
     const { classes } = this.props;
-    const { email, password, password_confirmation } = this.state;
+    const {
+      company_name,
+      contact_name,
+      zipcode,
+      website,
+      about_us,
+      email,
+      password,
+      password_confirmation,
+    } = this.state;
 
     return (
       <div>
@@ -81,6 +109,53 @@ class Registration extends Component {
                     Partner Registration
                   </Typography>
                 </Grid>
+
+                <Grid item className={classes.item}>
+                  <TextField
+                    label="company_name"
+                    type="text"
+                    onChange={this.handleChange("company_name")}
+                    value={company_name}
+                  />
+                </Grid>
+
+                <Grid item className={classes.item}>
+                  <TextField
+                    label="contact_name"
+                    type="contact_name"
+                    onChange={this.handleChange("contact_name")}
+                    value={contact_name}
+                    required
+                  />
+                </Grid>
+
+                <Grid item className={classes.item}>
+                  <TextField
+                    label="zipcode"
+                    type="integer"
+                    onChange={this.handleChange("zipcode")}
+                    value={zipcode}
+                  />
+                </Grid>
+
+                <Grid item className={classes.item}>
+                  <TextField
+                    label="website"
+                    type="text"
+                    onChange={this.handleChange("website")}
+                    value={website}
+                  />
+                </Grid>
+
+                <Grid item className={classes.item}>
+                  <TextField
+                    label="about_us"
+                    type="text"
+                    onChange={this.handleChange("about_us")}
+                    value={about_us}
+                  />
+                </Grid>
+
                 <Grid item className={classes.item}>
                   <TextField
                     label="email"

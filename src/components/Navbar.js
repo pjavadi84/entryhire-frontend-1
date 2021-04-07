@@ -5,17 +5,21 @@ import { Navbar } from "react-bootstrap";
 
 const nav = (props) => {
   return (
-    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <h1>Navbar</h1>
-      <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-dark bg-dark">
+      <Navbar>
         <div className="navbar-nav">
-          <Link to="/dashboard">Dashboard</Link>
+          <div>
+            <Link to="/dashboard">Dashboard</Link>
+          </div>
+          <br></br>
           {/* <Link to="../components/Home.js">Home</Link>
            */}
-          <Link to="/src/components/Home.js">Home</Link>
+          <div>
+            <Link to="/">Home</Link>
+          </div>
         </div>
       </Navbar>
-    </div>
+    </nav>
   );
 };
 
