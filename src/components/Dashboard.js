@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Dashboard = (props) => {
   return (
     <div>
       <div>
-        <h1>Dashboard1</h1>
-        <h1>Status: {props.loggedInStatus} </h1>
+        <h1>Welcome</h1>
+        <h1>You are {props.loggedInStatus} </h1>
       </div>
     </div>
   );
