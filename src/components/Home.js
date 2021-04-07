@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import Login from "./registration/auth/Login";
 import Registration from "./registration/auth/Registration";
-import Dashboard from "./Dashboard";
 
 export default class Home extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ export default class Home extends Component {
   }
 
   handleLogOutClick() {
-    debugger;
+    // debugger;
     axios
       .delete("http://localhost:3001/v1/logout", { withCredentials: true })
       .then((response) => {
@@ -32,17 +31,11 @@ export default class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
-        {/* <h1>Status: {this.props.loggedInStatus}</h1> */}
-        {this.props.loggedInStatus === "LOGGED_IN" ? (
-          ((<Login handleSuccessfulAuth={this.handleSuccessfulAuth} />),
-          (<Dashboard />))
-        ) : (
-          <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
-        )}
+        <h1>Status: {this.props.loggedInStatus}</h1>
 
-        {/* // <button onClick={() => this.handleLogOutClick()}>Logout</button>
-        // <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
-        // <Login handleSuccessfulAuth={this.handleSuccessfulAuth} /> */}
+        <button onClick={() => this.handleLogOutClick()}>Logout</button>
+        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
+        <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
       </div>
     );
   }

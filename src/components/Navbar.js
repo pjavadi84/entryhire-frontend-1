@@ -1,22 +1,22 @@
 import React from "react";
-import Dashboard from "./Dashboard";
-import Login from "./registration/auth/Login";
+import { Link } from "react-router-dom";
+import { Navbar } from "react-bootstrap";
+// import Home from "../components/Home";
 
-function navBar(props) {
+const nav = (props) => {
   return (
-    <h1>Navbar should be here</h1>
-    // <div>
-    //   <ul id="nav">
-    //     <li>
-    //       <Dashboard />
-    //     </li>
-    //     <li>
-    //       <Login />
-    //       Login
-    //     </li>
-    //   </ul>
-    // </div>
+    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <h1>Navbar</h1>
+      <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="navbar-nav">
+          <Link to="/dashboard">Dashboard</Link>
+          {/* <Link to="../components/Home.js">Home</Link>
+           */}
+          <Link to="/src/components/Home.js">Home</Link>
+        </div>
+      </Navbar>
+    </div>
   );
-}
+};
 
-export default navBar;
+export default nav;
