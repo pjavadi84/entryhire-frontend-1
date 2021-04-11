@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 // import Registration from "./components/registration/auth/Registration";
 // import Login from "./components/registration/auth/Login";
-import NavBar from "./components/Navbar";
-import { Navbar } from "react-bootstrap";
+// import NavBar from "./components/Navbar";
+// import { Navbar } from "react-bootstrap";
 
 // I USED CAPITAL STRINGS FOR LOG STATUS TO MAKE EASIER TO DIFFERENTIATE VARIOUS CONDITIONALS
 export default class App extends Component {
@@ -74,7 +74,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar>
+          {/* <Navbar>
             <Route
               render={(props) => (
                 <NavBar
@@ -85,7 +85,7 @@ export default class App extends Component {
                 />
               )}
             />
-          </Navbar>
+          </Navbar> */}
 
           <Switch>
             <Route
